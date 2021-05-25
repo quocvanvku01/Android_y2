@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewPager() {
-        var viewPagerAdapter: ViewPagerHome_Adapter = ViewPagerHome_Adapter(supportFragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+        var viewPagerAdapter: ViewPagerHome_Adapter = ViewPagerHome_Adapter(supportFragmentManager
+            , FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         mViewPagerMain.adapter = viewPagerAdapter
 
         mViewPagerMain.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{

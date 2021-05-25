@@ -3,6 +3,7 @@ package com.example.vku_decuong_2.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.vku_decuong_2.StartLoadingData
 import com.example.vku_decuong_2.home.fragment.FragmentHome
 import com.example.vku_decuong_2.home.fragment.FragmentTaiKhoan
 import com.example.vku_decuong_2.home.fragment.Fragment_1

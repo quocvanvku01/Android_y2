@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/radius_2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_phonghoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="V403"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:gravity="center"
+            android:paddingTop="7dp"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:id="@+id/tv_tiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="T6->T7"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#f3f3f3"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tenhocphan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lập trình di động (1)"
+            android:textSize="20sp"
+            android:paddingTop="2dp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/tv_thoigian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13:00 - 15:00"
+            android:textSize="14sp"
+            android:paddingTop="3dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

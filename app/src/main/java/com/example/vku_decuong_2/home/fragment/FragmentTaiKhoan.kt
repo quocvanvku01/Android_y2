@@ -3,15 +3,21 @@ package com.example.vku_decuong_2.home.fragment
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.vku_decuong_2.LoginActivity
 import com.example.vku_decuong_2.R
+import com.example.vku_decuong_2.taikhoan.SettingTK
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +37,12 @@ class FragmentTaiKhoan : Fragment() {
     private lateinit var mView: View
 
     private lateinit var btnLogout: LinearLayout
+    private lateinit var tvPhoneNumber: TextView
+    private lateinit var tvNameTk: TextView
+    private lateinit var tvEmailTk: TextView
+    private lateinit var imSetting: ImageView
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +60,19 @@ class FragmentTaiKhoan : Fragment() {
         mView = inflater.inflate(R.layout.fragment_tai_khoan, container, false)
 
         btnLogout = mView.findViewById(R.id.btn_logout)
+        tvPhoneNumber = mView.findViewById(R.id.tv_phone_number)
+        tvNameTk = mView.findViewById(R.id.tv_name_tk)
+        tvEmailTk = mView.findViewById(R.id.tv_email_tk)
+        imSetting = mView.findViewById(R.id.im_setting)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(context!!, gso)
 
         btnLogout.setOnClickListener{
+            signOut()
             var logout: SharedPreferences? = this.activity?.getSharedPreferences("isLogin", 0)
             var editorLogout: SharedPreferences.Editor? = logout?.edit()
             editorLogout?.clear()
@@ -57,10 +80,30 @@ class FragmentTaiKhoan : Fragment() {
             Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
             val intentLogout = Intent(context, LoginActivity::class.java)
             startActivity(intentLogout)
+
+        }
+
+        val setIsLogin = activity?.getSharedPreferences("isLogin", 0)
+        var name = setIsLogin?.getString("name", "").toString()
+        var email = setIsLogin?.getString("email", "").toString()
+
+        tvNameTk.text = "Hi, " + name
+        tvEmailTk.text = email
+
+        imSetting.setOnClickListener {
+            val intent_setting = Intent(context, SettingTK::class.java)
+            startActivity(intent_setting)
         }
 
         return mView
 
+    }
+
+    private fun signOut() {
+        mGoogleSignInClient.signOut()
+            .addOnCompleteListener {
+                Toast.makeText(context, "Sigout Success", Toast.LENGTH_SHORT).show()
+            }
     }
 
     companion object {

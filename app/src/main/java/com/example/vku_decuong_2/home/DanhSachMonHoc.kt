@@ -39,12 +39,15 @@ class DanhSachMonHoc : AppCompatActivity() {
         progerssProgressDialog.setCancelable(false)
         progerssProgressDialog.show()
 
-        getDataDsmh()
+        val setIsLogin = getSharedPreferences("isLogin", 0)
+        val getIdgv:Int = setIsLogin.getInt("idgv", 0)
+
+        getDataDsmh(getIdgv)
 
     }
 
-    private fun getDataDsmh() {
-        val call: Call<List<DanhSachMonHoc_Model>> = ApiClient.getClient.getDataDsmh(133)
+    private fun getDataDsmh(idgv: Int) {
+        val call: Call<List<DanhSachMonHoc_Model>> = ApiClient.getClient.getDataDsmh(idgv)
         call.enqueue(object: Callback<List<DanhSachMonHoc_Model>> {
             override fun onResponse(call: Call<List<DanhSachMonHoc_Model>>?, response : Response<List<DanhSachMonHoc_Model>>? ) {
                 progerssProgressDialog.dismiss()

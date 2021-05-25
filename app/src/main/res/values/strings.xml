@@ -5,4 +5,8 @@
     <string name="home">Trang chủ</string>
     <string name="item1">Item 1</string>
     <string name="tai_khoan">Tài Khoản</string>
+    <string name="channel_name">Chanel 1</string>
+    <string name="channel_description">This is Chanel 1</string>
+
+    <string name="server_client_id">680271180866-7df8m27icgam00vk0kg77djm0b3cpm6b.apps.googleusercontent.com</string>
 </resources>

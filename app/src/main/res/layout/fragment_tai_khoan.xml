@@ -11,21 +11,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/boder_2"
-        android:layout_marginLeft="40dp">
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="25dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/arrow_back"
-                android:layout_marginTop="30dp"/>
+                android:layout_alignParentLeft="true"/>
+
+            <ImageView
+                android:id="@+id/im_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/settings"
+                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,6 +54,7 @@
             android:layout_marginTop="15dp">
 
             <TextView
+                android:id="@+id/tv_name_tk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hi, Pham Quoc Van"
@@ -75,6 +83,7 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_email_tk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="pqvan.19it3@vku.udn.vn"
@@ -105,6 +114,7 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0347021624"

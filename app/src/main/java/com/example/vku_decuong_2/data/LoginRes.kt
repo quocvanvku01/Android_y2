@@ -6,6 +6,12 @@ class LoginRes(
 
         @SerializedName("success")
         val success: String,
-        @SerializedName("token")
-        val token: String
+        @SerializedName("privider")
+        val privider: String,
+        @SerializedName("email")
+        val email: String,
+        @SerializedName("chucvu")
+        val chucvu: String,
+        @SerializedName("user")
+        val user: User_Model
 )

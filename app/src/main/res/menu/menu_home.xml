@@ -9,6 +9,10 @@
         android:icon="@drawable/alarm"
         android:title="@string/item1" />
     <item
+        android:id="@+id/tab_2"
+        android:icon="@drawable/alarm"
+        android:title="@string/item1" />
+    <item
         android:id="@+id/tab_taikhoan"
         android:icon="@drawable/person_1"
         android:title="@string/tai_khoan" />

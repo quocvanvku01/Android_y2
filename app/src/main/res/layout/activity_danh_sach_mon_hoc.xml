@@ -27,7 +27,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fdcb2c">
+        android:background="#f3f3f3">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_dsmh"

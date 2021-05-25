@@ -3,8 +3,10 @@
     package="com.example.vku_decuong_2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".Chanel.ChanelAlarm"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vku_decuong_2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".data.KeHoachGiangDay"></activity>
+        <activity android:name=".taikhoan.SettingTK"></activity>
+        <activity android:name=".StartLoadingData">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".data.KeHoachGiangDay" />
         <activity android:name=".home.DanhSachMonHoc" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
@@ -22,6 +32,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".Service.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.vku_decuong_2.intent.Service.MyService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".Service.MyService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

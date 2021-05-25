@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
 import com.example.vku_decuong_2.data.DanhSachMonHoc_Model
 import com.example.vku_decuong_2.data.KeHoachGiangDay
+import kotlin.random.Random
 
 
 class DanhSachMonHoc_Adapter(var listDsmh: ArrayList<DanhSachMonHoc_Model>, var context: Context)
@@ -19,7 +21,7 @@ class DanhSachMonHoc_Adapter(var listDsmh: ArrayList<DanhSachMonHoc_Model>, var 
 
     inner class ViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
         var TvCmgd : TextView = itemView.findViewById(R.id.tv_dsmh)
-
+        var lnMh: LinearLayout = itemview.findViewById(R.id.ln_monhoc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,6 +42,11 @@ class DanhSachMonHoc_Adapter(var listDsmh: ArrayList<DanhSachMonHoc_Model>, var 
         }
 
         holder.TvCmgd.setText(danhsachmonhoc.tenmon)
+
+        val random = Random
+        val num: Int = random.nextInt(5, 8)
+
+        holder.lnMh.setBackgroundResource(R.drawable.boder_5)
 
         var gIddecuong: String = danhsachmonhoc.id_decuong
 
