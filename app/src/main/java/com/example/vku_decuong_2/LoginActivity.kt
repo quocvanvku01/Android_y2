@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vku_decuong_2.api.ApiClient
@@ -34,9 +35,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var edtPassword: EditText
     private lateinit var btnLogin: ImageView
 
-    private lateinit var sigupBtn: ImageView
-
-    private lateinit var btnSigninGoogle: SignInButton
+    private lateinit var btnSigninGoogle: LinearLayout
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     private lateinit var userModel : User_Model
@@ -48,18 +47,18 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
 
-        edtEmail = findViewById(R.id.edt_email)
-        edtPassword = findViewById(R.id.edt_password)
-        btnLogin = findViewById(R.id.btn_login)
+        //edtEmail = findViewById(R.id.edt_email)
+        //edtPassword = findViewById(R.id.edt_password)
+        //btnLogin = findViewById(R.id.btn_login)
 
-        btnLogin.setOnClickListener {
-            var username: String = edtEmail.text.toString()
-            var password: String = edtPassword.text.toString()
+        //btnLogin.setOnClickListener {
+            //var username: String = edtEmail.text.toString()
+            //var password: String = edtPassword.text.toString()
 
-            if(validateLogin(username, password)) {
+            //if(validateLogin(username, password)) {
                 //doLogin(username, password)
-            }
-        }
+            //}
+        //}
 
         btnSigninGoogle = findViewById(R.id.btn_signin_google)
 
@@ -73,8 +72,6 @@ class LoginActivity : AppCompatActivity() {
         btnSigninGoogle.setOnClickListener {
             signIn()
         }
-
-        sigupBtn = findViewById(R.id.singupbtn)
 
     }
 
@@ -99,15 +96,11 @@ class LoginActivity : AppCompatActivity() {
 
             val token: String? = account?.idToken
             val provider: String = "google"
-
-            Log.d("token123", token.toString())
-
             val email_ldn: String? = account?.email
 
             val calendar: Calendar = Calendar.getInstance()
             var format: SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy  HH:mm")
             val ngaygio = format.format(calendar.time)
-
             val tenthietbi:String = Build.MODEL
 
             lichsudangnhap(tenthietbi, "Viet Nam", ngaygio, email_ldn.toString())
@@ -158,12 +151,14 @@ class LoginActivity : AppCompatActivity() {
                         val privider: String? = response?.body()?.privider
 
                         val id_gv: Int? = userModel.id.toInt()
+
                         var isLogin: SharedPreferences = applicationContext.getSharedPreferences("isLogin", 0)
                         var editorLogin: SharedPreferences.Editor = isLogin.edit()
                         editorLogin.putString("isLogin", privider)
                         editorLogin.putString("name", userModel.hodem + " " + userModel.ten)
                         editorLogin.putString("email", response?.body()?.email)
                         editorLogin.putString("chucvu", response?.body()?.chucvu)
+
                         if (id_gv != null) {
                             editorLogin.putInt("idgv", id_gv)
                             Log.d("IDGV", id_gv.toString())
@@ -197,9 +192,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<LichSuDangNhap_Model>, response: Response<LichSuDangNhap_Model>) {
                 if(response.isSuccessful) {
-
                     Log.d("LSDN", "Success")
-
                 } else {
                     Toast.makeText(this@LoginActivity, "Error! Please try again!", Toast.LENGTH_SHORT).show();
                 }

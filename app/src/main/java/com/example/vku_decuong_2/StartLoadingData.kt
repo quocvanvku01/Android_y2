@@ -86,8 +86,6 @@ class StartLoadingData : AppCompatActivity() {
             val getIsLogin = setIsLogin?.getString("isLogin", "")
             getIdgv = setIsLogin?.getInt("idgv", 0)!!
 
-            Log.d("getIsLogin", getIsLogin.toString())
-
             if(getIsLogin.equals("")) {
                 val intentLogin = Intent(context, LoginActivity::class.java)
                 startActivity(intentLogin)

@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vku_decuong_2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".taikhoan.SettingTK"></activity>
+        <activity android:name=".taikhoan.LichSuDangNhap"></activity>
+        <activity android:name=".taikhoan.SettingTK" />
         <activity android:name=".StartLoadingData">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
                 when(newTab.id) {
                     R.id.tab_home -> mViewPagerMain.currentItem = 0
                     R.id.tab_1 -> mViewPagerMain.currentItem = 1
-                    R.id.tab_taikhoan -> mViewPagerMain.currentItem = 2
+                    R.id.tab_2 -> mViewPagerMain.currentItem = 2
+                    R.id.tab_taikhoan -> mViewPagerMain.currentItem = 3
                     else -> mViewPagerMain.currentItem = 0
                 }
 
@@ -74,7 +75,8 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> bottomNavi.selectTabById(R.id.tab_home)
                     1 -> bottomNavi.selectTabById(R.id.tab_1)
-                    2 -> bottomNavi.selectTabById(R.id.tab_taikhoan)
+                    2 -> bottomNavi.selectTabById(R.id.tab_2)
+                    3 -> bottomNavi.selectTabById(R.id.tab_taikhoan)
                     else -> bottomNavi.selectTabById(R.id.tab_home)
                 }
             }

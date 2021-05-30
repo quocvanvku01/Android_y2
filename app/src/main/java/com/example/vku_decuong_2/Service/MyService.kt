@@ -28,32 +28,32 @@ class MyService: Service() {
 
             var current: Calendar = Calendar.getInstance()
 
-            var format: SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy  HH:mm:ss")
-            val ngaygio = format.format(current.time)
+            var formatHour: SimpleDateFormat = SimpleDateFormat("HH")
+            val gio:Int = formatHour.format(current.time).toInt()
+            var formatMinutes: SimpleDateFormat = SimpleDateFormat("mm")
+            val phut: Int = formatMinutes.format(current.time).toInt()
+            var formatSe: SimpleDateFormat = SimpleDateFormat("ss")
+            val giay: Int = formatSe.format(current.time).toInt()
 
             val week: Int = current.get(Calendar.DAY_OF_WEEK)
 
-            if (current.get(Calendar.HOUR) == 4 && current.get(Calendar.MINUTE) == 27 && current.get(Calendar.SECOND) == 0) {
 
-                list_MH.forEach {
 
-                    val random: Random = Random()
-                    var m: Int = random.nextInt(9999 - 1000) + 1000
+            list_MH.forEach {
 
+                if (gio == 21 && phut == 57 && giay == 0) {
                     if (it.thu.toInt()-1 == week) {
-                        Log.d("Temp", "Successfull")
-                        var notification: Notification = NotificationCompat.Builder(baseContext, ChanelAlarm.CHANNEL_ID)
-                                .setContentTitle(it.tenmon)
-                                .setContentText("Phòng " + it.phonghoc + " | Thứ " + it.thu + " | Tiết " + it.tiet)
-                                .setSmallIcon(R.drawable.alarm_clock)
-                                .setStyle(NotificationCompat.BigTextStyle().bigText("Phòng " + it.phonghoc
-                                        + " | Thứ " + it.thu + " | Tiết " + it.tiet ))
-                                .build()
+                        sendNotification(it)
+                    }
+                }
 
-                        val notificationManager: NotificationManager = baseContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                        notificationManager.notify(m, notification)
+                val thoigian = it.thoigian
+                val giobatdau: Int = thoigian.substring(0, 2).toInt()
+                val phutbatdau: Int = thoigian.substring(3, 5).toInt()
 
-                        Thread.sleep(10000)
+                if (gio == giobatdau - 1 && phut == phutbatdau) {
+                    if(it.thu.toInt() == week) {
+                        sendNotification(it)
                     }
                 }
 
@@ -62,6 +62,24 @@ class MyService: Service() {
             handler.postDelayed(this, 700)
 
         }
+    }
+
+    private fun sendNotification(it: MonHoc_Model) {
+        val random: Random = Random()
+        var m: Int = random.nextInt(9999 - 1000) + 1000
+        Log.d("Temp", "Successfull")
+        var notification: Notification = NotificationCompat.Builder(baseContext, ChanelAlarm.CHANNEL_ID)
+                .setContentTitle(it.tenmon)
+                .setContentText("Phòng " + it.phonghoc + " | Thứ " + it.thu + " | Tiết " + it.tiet)
+                .setSmallIcon(R.drawable.alarm_clock)
+                .setStyle(NotificationCompat.BigTextStyle().bigText("Phòng " + it.phonghoc
+                        + " | Thứ " + it.thu + " | Tiết " + it.tiet ))
+                .build()
+
+        val notificationManager: NotificationManager = baseContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(m, notification)
+
+        Thread.sleep(10000)
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -75,13 +93,11 @@ class MyService: Service() {
         Log.d("start sv", "service start")
 
         val b = intent?.extras
-
         list_MH = b?.getSerializable("key") as ArrayList<MonHoc_Model>
 
         getDataMh()
 
         runnable.run()
-
         return Service.START_STICKY
     }
 

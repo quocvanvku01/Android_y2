@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,7 @@ import com.example.vku_decuong_2.api.ApiClient
 import com.example.vku_decuong_2.data.MonHocHomNay_Model
 import com.example.vku_decuong_2.data.MonHoc_Model
 import com.example.vku_decuong_2.home.DanhSachMonHoc
+import com.example.vku_decuong_2.taikhoan.DarkModePrefManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,6 +68,10 @@ class FragmentHome : Fragment() {
                               savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(R.layout.fragment_home, container, false)
 
+        if(DarkModePrefManager(context).isNightMode()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
         week = mView.findViewById(R.id.week)
         week.setText(getWeek().toString())
 
@@ -74,7 +80,7 @@ class FragmentHome : Fragment() {
         chucvu = setIsLogin?.getString("chucvu", "").toString()
 
         tvNameHome = mView.findViewById(R.id.tv_name_home)
-        tvNameHome.text = name
+        tvNameHome.text = name.toUpperCase()
 
         tvTitleLichHome = mView.findViewById(R.id.tv_title_lich_home)
 

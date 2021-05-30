@@ -35,4 +35,10 @@ interface ApiService {
             @Field("email") email: String?
     ): Call<LichSuDangNhap_Model>
 
+    @GET("api/decuong/get-lich-su-dang-nhap/{provider}")
+    fun getlichsudangnhap(@Path("provider") provider: String): Call<List<LichSuDangNhap_Model>>
+
+    @GET("api/decuong/get-list-news-feed")
+    fun getnewsfeed(): Call<List<NewsFeed_Model>>
+
 }

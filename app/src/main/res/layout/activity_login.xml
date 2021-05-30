@@ -2,150 +2,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    style="@style/loginParent"
+    android:background="#FFFFFF">
+    <ScrollView
+        style="@style/parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="LOGIN"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <RelativeLayout
+            style="@style/parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="134dp"
-        app:srcCompat="@drawable/loginbackground" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="150dp"
-        android:text="Email"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+                <LinearLayout
+                    style="@style/parent"
+                    android:background="@drawable/login_shape_bk"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="181dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/user" />
+                    <ImageView
+                        style="@style/parent"
+                        android:background="@drawable/ic_login_bk"
+                        android:contentDescription="login background" />
 
-    <EditText
-        android:id="@+id/edt_email"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginStart="86dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName" />
+                </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="220dp"
-        android:text="Password"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp">
 
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="250dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/locked" />
+                <TextView
+                    style="@style/headerText"
+                    android:layout_gravity="center"
+                    android:text="VKU App"
+                    android:layout_marginTop="40dp"/>
+                <include
+                    layout="@layout/layout_login"/>
 
-    <EditText
-        android:id="@+id/edt_password"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edt_email"
-        android:layout_below="@+id/textView3"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPersonName" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+        </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_password"
-        android:layout_toStartOf="@+id/textView"
-        android:text="REMEMBER" />
+    </ScrollView>
 
-    <ImageView
-        android:id="@+id/btn_login"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="289dp"
-        android:layout_marginEnd="52dp"
-        app:srcCompat="@drawable/gobtn" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp"
-        app:srcCompat="@drawable/sginuploginbtn" />
-
-    <ImageView
-        android:id="@+id/singupbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="118dp"
-        app:srcCompat="@drawable/sginupbtn3" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/btn_signin_google"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="220dp"/>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="185dp"
-        android:text="No Account"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 </RelativeLayout>
+
+

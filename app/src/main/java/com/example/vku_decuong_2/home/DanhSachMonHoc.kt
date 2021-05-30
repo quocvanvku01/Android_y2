@@ -19,7 +19,7 @@ class DanhSachMonHoc : AppCompatActivity() {
     private lateinit var rcv_Dsmh: RecyclerView
     private lateinit var dsmh_Adapter: DanhSachMonHoc_Adapter
     lateinit var progerssProgressDialog: ProgressDialog
-    var list_Dsmh = ArrayList<DanhSachMonHoc_Model>()
+    private var list_Dsmh = ArrayList<DanhSachMonHoc_Model>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

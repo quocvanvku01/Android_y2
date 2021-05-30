@@ -17,7 +17,6 @@
             style="@style/viewParent.headerText"
             android:text="Settings" />
 
-
         <Switch
             android:id="@+id/darkModeSwitch"
             style="@style/settingsText"
@@ -39,7 +38,7 @@
             android:text="Tài khoản"/>
 
         <TextView
-            android:id="@+id/tv_líchudangnhap"
+            android:id="@+id/tv_lichsudangnhap"
             style="@style/viewParent.headerText.settingsTextIcon"
             android:drawableLeft="@drawable/ic_edit_profile"
             android:text="Lịch sử đăng nhập" />

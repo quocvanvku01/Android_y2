@@ -13,5 +13,7 @@ class MonHoc_Model(
         @SerializedName("thu")
         var thu: String,
         @SerializedName("noidung")
-        var noidung: String
+        var noidung: String,
+        @SerializedName("thoigian")
+        var thoigian: String
 ) : Serializable
