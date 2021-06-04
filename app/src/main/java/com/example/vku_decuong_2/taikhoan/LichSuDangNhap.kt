@@ -4,6 +4,8 @@ import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
@@ -24,15 +26,24 @@ class LichSuDangNhap : AppCompatActivity() {
     var list_Lsdn = ArrayList<LichSuDangNhap_Model>()
     private var provider: String = ""
 
+    private var token_api: String = ""
+
+    private lateinit var tvLsdn: TextView
+    private lateinit var tvDstb: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lich_su_dang_nhap)
         supportActionBar?.hide()
 
+        val fontBold = ResourcesCompat.getFont(this, R.font.jbmono_bold)
+        val fontRegular = ResourcesCompat.getFont(this, R.font.jbmono_regular)
+
         rcvLsdn = findViewById(R.id.rcv_lsdn)
 
         val setIsLogin = getSharedPreferences("isLogin", 0)
         provider = setIsLogin.getString("isLogin", "").toString()
+        token_api = setIsLogin?.getString("token_api", "").toString()
 
         var linerLayoutLsdn = LinearLayoutManager(this)
         rcvLsdn.layoutManager = linerLayoutLsdn
@@ -45,13 +56,19 @@ class LichSuDangNhap : AppCompatActivity() {
         progerssProgressDialog.setCancelable(false)
         progerssProgressDialog.show()
 
+        tvLsdn = findViewById(R.id.tv_lsdn)
+        tvDstb = findViewById(R.id.tv_dstb)
+
+        tvLsdn.typeface = fontBold
+        tvDstb.typeface = fontRegular
+
 
         getDataLsdn(provider)
 
     }
 
     private fun getDataLsdn(provider: String) {
-        val call: Call<List<LichSuDangNhap_Model>> = ApiClient.getClient.getlichsudangnhap(provider)
+        val call: Call<List<LichSuDangNhap_Model>> = ApiClient.getClient.getlichsudangnhap(provider,"Bearer "+token_api)
         call.enqueue(object: Callback<List<LichSuDangNhap_Model>> {
             override fun onResponse(call: Call<List<LichSuDangNhap_Model>>?, response : Response<List<LichSuDangNhap_Model>>? ) {
                 progerssProgressDialog.dismiss()

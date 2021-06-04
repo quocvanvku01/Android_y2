@@ -14,6 +14,7 @@
         android:padding="30dp">
 
         <TextView
+            android:id="@+id/tv_setting"
             style="@style/viewParent.headerText"
             android:text="Settings" />
 
@@ -24,16 +25,18 @@
             android:text="Dark Mode" />
 
         <TextView
+            android:id="@+id/tv_notifi"
             style="@style/viewParent.headerText.settingsMiniTitle"
             android:text="Notifications"/>
 
         <Switch
+            android:id="@+id/notificationSwitch"
             style="@style/settingsText"
-            android:checked="true"
             android:drawableLeft="@drawable/ic_notifications"
             android:text="Notifications" />
 
         <TextView
+            android:id="@+id/tv_tai_khoan"
             style="@style/viewParent.headerText.settingsMiniTitle"
             android:text="Tài khoản"/>
 
@@ -43,19 +46,16 @@
             android:drawableLeft="@drawable/ic_edit_profile"
             android:text="Lịch sử đăng nhập" />
 
-
         <TextView
+            android:id="@+id/tv_ngon_ngu"
             style="@style/viewParent.headerText.settingsMiniTitle"
-            android:text="Regional"/>
+            android:text="Ngôn ngữ"/>
 
         <TextView
+            android:id="@+id/tv_language"
             style="@style/viewParent.headerText.settingsTextIcon"
             android:drawableLeft="@drawable/ic_languages"
             android:text="Language" />
-
-
-
-
 
     </LinearLayout>
 </ScrollView>

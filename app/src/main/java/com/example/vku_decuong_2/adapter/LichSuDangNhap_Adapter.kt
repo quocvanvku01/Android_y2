@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
 import com.example.vku_decuong_2.data.KeHoachGiangDay_Model
@@ -16,6 +17,7 @@ class LichSuDangNhap_Adapter(var listLsdn: ArrayList<LichSuDangNhap_Model>, var 
     inner class ViewHolderLsdn(itemview: View): RecyclerView.ViewHolder(itemview) {
         var tvTenthietbi : TextView = itemView.findViewById(R.id.tv_tenthietbi)
         var tvVitringaygio : TextView = itemView.findViewById(R.id.tv_vitringaygio)
+        var tvDnbmk : TextView = itemview.findViewById(R.id.tv_dnbmk)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLsdn {
@@ -36,6 +38,13 @@ class LichSuDangNhap_Adapter(var listLsdn: ArrayList<LichSuDangNhap_Model>, var 
 
         holder.tvTenthietbi.setText(lichsudangnhap.tenthietbi)
         holder.tvVitringaygio.setText(lichsudangnhap.vitri + " * " + lichsudangnhap.ngaygio)
+
+        val fontBold = ResourcesCompat.getFont(context, R.font.jbmono_bold)
+        val fontRegular = ResourcesCompat.getFont(context, R.font.jbmono_regular)
+
+        holder.tvTenthietbi.typeface = fontBold
+        holder.tvDnbmk.typeface = fontRegular
+        holder.tvVitringaygio.typeface = fontRegular
     }
 
 }

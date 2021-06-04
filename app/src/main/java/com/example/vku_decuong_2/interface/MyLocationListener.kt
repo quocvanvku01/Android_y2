@@ -24,7 +24,7 @@ class MyLocationListener(val gcontext: Context): LocationListener {
     val TAG: String = "DEBUG"
 
     override fun onLocationChanged(location: Location) {
-        editLocation.setText("")
+        //editLocation.setText("")
         pb.setVisibility(View.INVISIBLE)
 
         Log.d("Ct", "Location changed: Lat: " + location.getLatitude().toString() +
@@ -50,7 +50,7 @@ class MyLocationListener(val gcontext: Context): LocationListener {
         }
         val s: String = longitude + latitude + "City " + cityName
         Log.d("cityname", s)
-        editLocation.setText(s)
+        //editLocation.setText(s)
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {

@@ -7,6 +7,8 @@ class DanhSachMonHoc_Model(
         @SerializedName("tenhocphan")
         var tenmon: String,
         @SerializedName("id_decuong")
-        var id_decuong: String
+        var id_decuong: String,
+        @SerializedName("token123")
+        var token123: String
 
 )

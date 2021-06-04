@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.vku_decuong_2.LoginActivity
 import com.example.vku_decuong_2.R
@@ -41,6 +42,7 @@ class FragmentTaiKhoan : Fragment() {
     private lateinit var tvNameTk: TextView
     private lateinit var tvEmailTk: TextView
     private lateinit var imSetting: ImageView
+    private lateinit var tvLogOut: TextView
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
@@ -94,6 +96,17 @@ class FragmentTaiKhoan : Fragment() {
             val intent_setting = Intent(context, SettingTK::class.java)
             startActivity(intent_setting)
         }
+
+        val fontRegular = ResourcesCompat.getFont(context!!, R.font.jbmono_regular)
+        val fontBold = ResourcesCompat.getFont(context!!, R.font.jbmono_bold)
+
+        tvLogOut = mView.findViewById(R.id.tv_log_out)
+
+        tvNameTk.typeface = fontBold
+        tvEmailTk.typeface = fontBold
+        tvPhoneNumber.typeface = fontBold
+        tvLogOut.typeface = fontRegular
+
 
         return mView
 

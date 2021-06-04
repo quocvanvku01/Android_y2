@@ -7,7 +7,7 @@ class NewsFeed_Model(
         var nguoidang: String,
         @SerializedName("tieude")
         var tieude: String,
-        @SerializedName("ngaygio")
+        @SerializedName("ngay")
         var ngaygio: String,
         @SerializedName("noidung")
         var noidung: String,

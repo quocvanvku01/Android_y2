@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
 import com.example.vku_decuong_2.data.DanhSachMonHoc_Model
@@ -42,10 +43,17 @@ class LichHomNay_Adapter(var listLhn: ArrayList<MonHocHomNay_Model>, var context
             return
         }
 
+        val fontRegular = ResourcesCompat.getFont(context!!, R.font.jbmono_regular)!!
+        val fontBold = ResourcesCompat.getFont(context!!, R.font.jbmono_bold)!!
+
         holder.TvPhongHoc.setText(lichhomnay.phonghoc)
+        holder.TvTenHocPhan.typeface = fontBold
         holder.TvTiet.setText(lichhomnay.tiet)
+        holder.TvTiet.typeface = fontRegular
         holder.TvTenHocPhan.setText(lichhomnay.tenmon)
+        holder.TvTenHocPhan.typeface = fontRegular
         holder.TvThoiGian.setText(lichhomnay.thoigian)
+        holder.TvThoiGian.typeface = fontRegular
 
     }
 

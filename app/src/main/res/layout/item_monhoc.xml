@@ -44,6 +44,7 @@
                     android:scaleType="centerCrop"/>
 
                 <TextView
+                    android:id="@+id/tv_mon_hoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Môn học"
@@ -80,10 +81,12 @@
                 android:layout_marginTop="30dp">
 
                 <TextView
+                    android:id="@+id/tvXemChiTiet"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Xem chi tiết"
                     android:textStyle="bold"
+                    android:textSize="12sp"
                     android:gravity="center"/>
 
             </RelativeLayout>

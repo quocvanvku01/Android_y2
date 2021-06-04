@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
@@ -19,6 +20,12 @@ import com.example.vku_decuong_2.adapter.NewsFeed_Adapter
 import com.example.vku_decuong_2.api.ApiClient
 import com.example.vku_decuong_2.data.DanhSachMonHoc_Model
 import com.example.vku_decuong_2.data.NewsFeed_Model
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,10 +47,14 @@ class Fragment_1 : Fragment(), OnClickLike {
 
     private lateinit var mView: View
 
+    private var pageCurrent: Int = 1
+
     private lateinit var rcv_Nf: RecyclerView
     private lateinit var nf_Adapter: NewsFeed_Adapter
     lateinit var progerssProgressDialog: ProgressDialog
     private var list_nf = ArrayList<NewsFeed_Model>()
+
+    private lateinit var tvVkuFeed: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +71,9 @@ class Fragment_1 : Fragment(), OnClickLike {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_1, container, false)
 
+        val fontBold = ResourcesCompat.getFont(context!!, R.font.jbmono_bold)!!
+        val fontRegular = ResourcesCompat.getFont(context!!, R.font.jbmono_regular)!!
+
         rcv_Nf = mView.findViewById(R.id.rcv_news_feed)
 
         var linerLayoutDsmh = LinearLayoutManager(context)
@@ -73,13 +87,27 @@ class Fragment_1 : Fragment(), OnClickLike {
         progerssProgressDialog.setCancelable(false)
         progerssProgressDialog.show()
 
-        getDataNf()
+        getDataNf(pageCurrent)
+
+        rcv_Nf.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!recyclerView.canScrollVertically(1)) {
+                    pageCurrent++
+                    getDataNf(pageCurrent)
+                    Toast.makeText(context, pageCurrent.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        tvVkuFeed = mView.findViewById(R.id.tv_vku_feed)
+        tvVkuFeed.typeface = fontBold
 
         return mView
     }
 
-    private fun getDataNf() {
-        val call: Call<List<NewsFeed_Model>> = ApiClient.getClient.getnewsfeed()
+    private fun getDataNf(page : Int) {
+        val call: Call<List<NewsFeed_Model>> = ApiClient.getClient.getnewsfeed(page)
         call.enqueue(object: Callback<List<NewsFeed_Model>> {
             override fun onResponse(call: Call<List<NewsFeed_Model>>?, response : Response<List<NewsFeed_Model>>? ) {
                 progerssProgressDialog.dismiss()

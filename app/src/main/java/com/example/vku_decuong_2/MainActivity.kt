@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavi: AnimatedBottomBar
     private lateinit var mViewPagerMain: ViewPager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

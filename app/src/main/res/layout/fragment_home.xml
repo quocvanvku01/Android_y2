@@ -26,6 +26,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/btn_map"
                     android:layout_width="30dp"
                     android:layout_height="25dp"
                     android:src="@drawable/double_line"
@@ -110,7 +111,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -119,7 +120,7 @@
                     android:background="@drawable/radius_3"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
@@ -141,11 +142,12 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="7dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/tv_tuan_hoc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tuần học:  "
@@ -157,7 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="40"
-                            android:textSize="21sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#263555"/>
 
@@ -256,14 +258,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="25dp"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_dsmh_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Danh sách các môn học"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="bold"
                         android:textColor="#5c6066"
                         android:paddingTop="20dp"/>
@@ -319,10 +322,12 @@
                         android:layout_marginTop="30dp">
 
                         <TextView
+                            android:id="@+id/tv_xem_chi_tiet"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Xem chi tiết"
                             android:textStyle="bold"
+                            android:textSize="12sp"
                             android:gravity="center"/>
 
                     </RelativeLayout>

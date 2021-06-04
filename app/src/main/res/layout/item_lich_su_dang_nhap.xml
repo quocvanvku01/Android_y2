@@ -30,11 +30,12 @@
             android:id="@+id/tv_tenthietbi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tai_khoan"
+            android:text="Ten thiet bi"
             android:textSize="17sp"
             android:paddingBottom="2dp"/>
 
         <TextView
+            android:id="@+id/tv_dnbmk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đăng nhập bằng mật khẩu"/>

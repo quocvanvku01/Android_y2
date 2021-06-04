@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
 import com.example.vku_decuong_2.data.KeHoachGiangDay_Model
@@ -33,8 +34,14 @@ class KeHoachGiangDay_Adapter(var listKhgd: ArrayList<KeHoachGiangDay_Model>, va
             return
         }
 
+        val fontRegular = ResourcesCompat.getFont(context!!, R.font.jbmono_regular)!!
+        val fontBold = ResourcesCompat.getFont(context!!, R.font.jbmono_bold)!!
+
         holder.TvBuoi.setText(kehoachgiangday.buoi)
         holder.TvNoidung.setText(kehoachgiangday.noidung)
+
+        holder.TvBuoi.typeface = fontBold
+        holder.TvNoidung.typeface = fontRegular
     }
 
 }

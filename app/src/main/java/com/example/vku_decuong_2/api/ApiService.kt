@@ -15,16 +15,16 @@ interface ApiService {
     ): Call<LoginRes>
 
     @GET("api/decuong/get-list-mon-hoc/{id_gv}")
-    fun getDataDsmh(@Path("id_gv") id_gv: Int): Call<List<DanhSachMonHoc_Model>>
+    fun getDataDsmh(@Path("id_gv") id_gv: Int, @Header("Authorization") authHeader: String): Call<List<DanhSachMonHoc_Model>>
 
     @GET("api/decuong/get-ke-hoach-giang-day/{id_decuong}")
-    fun getDataKhgd(@Path("id_decuong") id_decuong: Int): Call<List<KeHoachGiangDay_Model>>
+    fun getDataKhgd(@Path("id_decuong") id_decuong: Int, @Header("Authorization") authHeader: String): Call<List<KeHoachGiangDay_Model>>
 
     @GET("api/decuong/get-lich-ngay-hom-nay/{id_gv}")
-    fun getDataLhn(@Path("id_gv") id_gv: Int): Call<List<MonHocHomNay_Model>>
+    fun getDataLhn(@Path("id_gv") id_gv: Int, @Header("Authorization") authHeader: String): Call<List<MonHocHomNay_Model>>
 
     @GET("api/decuong/get-lich/{id_gv}")
-    fun getDataMonHoc(@Path("id_gv") id_gv: Int): Call<List<MonHoc_Model>>
+    fun getDataMonHoc(@Path("id_gv") id_gv: Int, @Header("Authorization") authHeader: String): Call<List<MonHoc_Model>>
 
     @FormUrlEncoded
     @POST("api/decuong/insert-lsdn")
@@ -32,13 +32,14 @@ interface ApiService {
             @Field("tenthietbi") tenthietbi: String?,
             @Field("vitri") vitri: String?,
             @Field("ngaygio") ngaygio: String?,
-            @Field("email") email: String?
+            @Field("email") email: String?,
+            @Header("Authorization") authHeader: String
     ): Call<LichSuDangNhap_Model>
 
     @GET("api/decuong/get-lich-su-dang-nhap/{provider}")
-    fun getlichsudangnhap(@Path("provider") provider: String): Call<List<LichSuDangNhap_Model>>
+    fun getlichsudangnhap(@Path("provider") provider: String, @Header("Authorization") authHeader: String): Call<List<LichSuDangNhap_Model>>
 
-    @GET("api/decuong/get-list-news-feed")
-    fun getnewsfeed(): Call<List<NewsFeed_Model>>
+    @GET("api/decuong/get-list-news-feed/{pageCurrent}")
+    fun getnewsfeed(@Path("pageCurrent") pageCurrent: Int): Call<List<NewsFeed_Model>>
 
 }

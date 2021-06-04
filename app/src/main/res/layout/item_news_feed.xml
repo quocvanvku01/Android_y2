@@ -41,6 +41,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tv_ngaygio_newsfeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1 phút trước"
@@ -55,7 +56,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="15dp">
 
         <TextView
             android:id="@+id/tv_title_news"
@@ -71,7 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:paddingBottom="10dp"/>
+            android:paddingBottom="10dp"
+            android:gravity="fill_horizontal"/>
 
     </LinearLayout>
 
@@ -79,8 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/boder_10"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -92,10 +94,11 @@
             android:text="Yêu thích"
             android:drawableLeft="@drawable/heart"
             android:gravity="center"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/tv_binh_luan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -103,17 +106,18 @@
             android:gravity="center"
             android:drawableLeft="@drawable/comment"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/tv_chia_se"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Chia sẻ"
             android:gravity="center"
             android:drawableLeft="@drawable/share"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:textStyle="bold"/>
 
     </LinearLayout>

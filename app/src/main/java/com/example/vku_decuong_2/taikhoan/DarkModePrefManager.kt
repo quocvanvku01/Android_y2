@@ -12,7 +12,6 @@ class DarkModePrefManager(val context: Context?) {
     var PRIVATE_MODE = 0
 
     private val PREF_NAME = "education-dark-mode"
-
     private val IS_NIGHT_MODE = "IsNightMode"
 
     init {

@@ -28,7 +28,8 @@
         app:abb_indicatorColor="#FD8F4B"
         app:abb_tabColor="#5c6066"
         app:abb_tabColorSelected="#FD8F4B"
-        app:abb_textSize="18sp"
-        app:abb_iconSize="30dp"/>
+        app:abb_textSize="16sp"
+        app:abb_iconSize="30dp"
+        app:abb_textAppearance="@style/Style_TextView"/>
 
 </RelativeLayout>

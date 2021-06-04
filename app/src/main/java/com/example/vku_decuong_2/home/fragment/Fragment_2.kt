@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
@@ -29,10 +31,14 @@ class Fragment_2 : Fragment() {
 
     private lateinit var mView: View
 
+    private lateinit var tvDsmh2: TextView
+
     private lateinit var rcv_Dsmh: RecyclerView
     private lateinit var dsmh_Adapter: DanhSachMonHoc_Adapter
     lateinit var progerssProgressDialog: ProgressDialog
     private var list_Dsmh = ArrayList<DanhSachMonHoc_Model>()
+
+    private var token_api: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,16 +67,22 @@ class Fragment_2 : Fragment() {
 
         val setIsLogin = activity?.getSharedPreferences("isLogin", 0)
         val getIdgv:Int? = setIsLogin?.getInt("idgv", 0)
+        token_api = setIsLogin?.getString("token_api", "").toString()
 
         if (getIdgv != null) {
             getDataDsmh(getIdgv)
         }
 
+        val fontRegular = ResourcesCompat.getFont(context!!, R.font.jbmono_regular)!!
+        val fontBold = ResourcesCompat.getFont(context!!, R.font.jbmono_bold)!!
+        tvDsmh2 = mView.findViewById(R.id.tv_dsmh_2)
+        tvDsmh2.typeface = fontBold
+
         return mView
     }
 
     private fun getDataDsmh(idgv: Int) {
-        val call: Call<List<DanhSachMonHoc_Model>> = ApiClient.getClient.getDataDsmh(idgv)
+        val call: Call<List<DanhSachMonHoc_Model>> = ApiClient.getClient.getDataDsmh(idgv,"Bearer "+token_api)
         call.enqueue(object: Callback<List<DanhSachMonHoc_Model>> {
             override fun onResponse(call: Call<List<DanhSachMonHoc_Model>>?, response : Response<List<DanhSachMonHoc_Model>>? ) {
                 progerssProgressDialog.dismiss()

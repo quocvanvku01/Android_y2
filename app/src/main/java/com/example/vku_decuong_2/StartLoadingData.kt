@@ -1,7 +1,13 @@
 package com.example.vku_decuong_2
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
@@ -10,16 +16,23 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.example.vku_decuong_2.Service.MyService
 import com.example.vku_decuong_2.`interface`.RetrofitResponseListener
 import com.example.vku_decuong_2.api.ApiClient
 import com.example.vku_decuong_2.data.MonHocHomNay_Model
 import com.example.vku_decuong_2.data.MonHoc_Model
 import com.example.vku_decuong_2.home.fragment.FragmentHome
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.Serializable
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class StartLoadingData : AppCompatActivity() {
@@ -27,18 +40,30 @@ class StartLoadingData : AppCompatActivity() {
     private lateinit var pcbStatus: ProgressBar
 
     private var getIdgv: Int = 0
+    private var token_api: String = ""
 
     var asyncTasksLoadingData: AsyncTasksLoadingData? = null
 
     private var check_1: Int = 0
     private var check_2: Int = 0
 
+    private lateinit var setIsLogin: SharedPreferences
+
+    private lateinit var fusedLocation: FusedLocationProviderClient
+
+    private var distanofschol: String = "0"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_loading_data)
         supportActionBar?.hide()
 
+        getLocation()
+
         pcbStatus = findViewById(R.id.prb_Status)
+
+        setIsLogin = getSharedPreferences("isLogin", 0)
+        token_api = setIsLogin?.getString("token_api", "").toString()
 
         asyncTasksLoadingData = AsyncTasksLoadingData(this)
         asyncTasksLoadingData?.execute()
@@ -100,11 +125,12 @@ class StartLoadingData : AppCompatActivity() {
     }
 
     private fun getDataLhn(getIdgv: Int) {
-        val call: Call<List<MonHocHomNay_Model>> = ApiClient.getClient.getDataLhn(getIdgv)
+        val call: Call<List<MonHocHomNay_Model>> = ApiClient.getClient.getDataLhn(getIdgv, "Bearer "+token_api)
         call.enqueue(object: Callback<List<MonHocHomNay_Model>> {
             override fun onResponse(call: Call<List<MonHocHomNay_Model>>?, response : Response<List<MonHocHomNay_Model>>? ) {
                 if (response!!.isSuccessful) {
                     list_Lhn_Loading = ArrayList<MonHocHomNay_Model>(response!!.body())
+                    //Log.d("abc", list_Lhn_Loading.get(0).tenmon)
                     getDataLhnLoading()
                     retrofitResponse_1()
                 } else {
@@ -123,7 +149,7 @@ class StartLoadingData : AppCompatActivity() {
 
     fun getDataMonHoc(getIdgv: Int) {
 
-        val call: Call<List<MonHoc_Model>> = ApiClient.getClient.getDataMonHoc(getIdgv)
+        val call: Call<List<MonHoc_Model>> = ApiClient.getClient.getDataMonHoc(getIdgv,"Bearer "+token_api)
         call.enqueue(object: Callback<List<MonHoc_Model>> {
             override fun onResponse(call: Call<List<MonHoc_Model>>?, response : Response<List<MonHoc_Model>>? ) {
 
@@ -134,7 +160,6 @@ class StartLoadingData : AppCompatActivity() {
                 } else {
                     retrofitResponseFailure()
                 }
-
             }
             override fun onFailure(call: Call<List<MonHoc_Model>>?, t : Throwable ? ) {
                 if (call!!.isCanceled()) {
@@ -180,6 +205,7 @@ class StartLoadingData : AppCompatActivity() {
 
         var b = Bundle()
         b.putSerializable("key", list_Monhoc_Loading)
+        b.putSerializable("locationlatlong", distanofschol)
         val intent_service = Intent(this, MyService::class.java)
         intent_service.putExtras(b)
         //baseContext.startForegroundService(intent_service)
@@ -189,6 +215,57 @@ class StartLoadingData : AppCompatActivity() {
     private fun retrofitResponseFailure() {
         Log.d("Error Res", "Error")
     }
+
+    private fun getLocation() {
+        fusedLocation = LocationServices.getFusedLocationProviderClient(this)
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocation.lastLocation.addOnCompleteListener(object : OnCompleteListener<Location> {
+                override fun onComplete(p0: Task<Location>) {
+                    val location: Location? = p0.getResult()
+                    if(location != null) {
+
+                        var lat1: Double = location.latitude
+                        var long1: Double = location.longitude
+                        var lat2: Double = 15.974996553016677
+                        var long2: Double = 108.25322914693861
+
+                        distanofschol = distance(lat1, long1, lat2, long2).toString()
+
+                    }
+                }
+            })
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 44)
+        }
+    }
+
+    private fun distance(lat1 : Double, long1 : Double, lat2 : Double, long2 : Double): Double {
+        var longDiff = long1 - long2
+        var distance: Double = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(longDiff))
+
+        distance = Math.acos(distance)
+
+        distance = rad2deg(distance)
+
+        distance = distance * 60 * 1.1515
+
+        distance = distance * 1.609344
+
+        return distance
+
+//        Log.d("CurrentTinhtoan", String.format(Locale.US, "%2f Kilometers", distance))
+
+    }
+
+    private fun rad2deg(distance: Double): Double {
+        return (distance * 180.0 / Math.PI)
+    }
+
+    private fun deg2rad(lat1: Double): Double {
+        return (lat1*Math.PI/180.0)
+    }
+
 
 
 }

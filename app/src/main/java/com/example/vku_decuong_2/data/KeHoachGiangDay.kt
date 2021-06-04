@@ -4,7 +4,9 @@ import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vku_decuong_2.R
@@ -22,10 +24,23 @@ class KeHoachGiangDay : AppCompatActivity() {
     var list_Khgd = ArrayList<KeHoachGiangDay_Model>()
     private lateinit var value_id: String
 
+    private var token_api: String = ""
+
+    private lateinit var tvKhgd: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ke_hoach_giang_day)
         supportActionBar?.hide()
+
+        val fontRegular = ResourcesCompat.getFont(this, R.font.jbmono_regular)!!
+        val fontBold = ResourcesCompat.getFont(this, R.font.jbmono_bold)!!
+        tvKhgd = findViewById(R.id.tv_khgd)
+        tvKhgd.typeface = fontBold
+
+
+        val setIsLogin = getSharedPreferences("isLogin", 0)
+        token_api = setIsLogin?.getString("token_api", "").toString()
 
         var intent = intent
 
@@ -50,7 +65,7 @@ class KeHoachGiangDay : AppCompatActivity() {
     }
 
     private fun getDataKhgd() {
-        val call: Call<List<KeHoachGiangDay_Model>> = ApiClient.getClient.getDataKhgd(value_id.toInt())
+        val call: Call<List<KeHoachGiangDay_Model>> = ApiClient.getClient.getDataKhgd(value_id.toInt(),"Bearer "+token_api)
         call.enqueue(object: Callback<List<KeHoachGiangDay_Model>> {
             override fun onResponse(call: Call<List<KeHoachGiangDay_Model>>?, response : Response<List<KeHoachGiangDay_Model>>? ) {
                 progerssProgressDialog.dismiss()

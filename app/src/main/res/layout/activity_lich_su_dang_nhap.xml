@@ -14,6 +14,7 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/tv_lsdn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lịch sử đăng nhập"
@@ -25,6 +26,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_dstb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DANH SÁCH THIẾT BỊ"

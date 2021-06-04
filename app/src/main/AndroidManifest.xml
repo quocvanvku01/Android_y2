@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.vku_decuong_2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -14,7 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vku_decuong_2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".taikhoan.LichSuDangNhap"></activity>
+        <activity android:name=".location.MapActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAilGnD_TSL6naGq7KzxWVXCJBqdEZkJkk" />
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".taikhoan.LichSuDangNhap" />
         <activity android:name=".taikhoan.SettingTK" />
         <activity android:name=".StartLoadingData">
             <intent-filter>
